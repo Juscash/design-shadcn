@@ -1,0 +1,14 @@
+{
+  "active": [
+    {
+      "slug": "self-contained-ui-library",
+      "path": "plans/self-contained-ui-library.md",
+      "title": "Biblioteca UI Auto-Suficiente (CSS Pre-compilado)",
+      "summary": "Modificar a biblioteca @juscash/ui para ser auto-suficiente, incluindo CSS pre-compilado com Tailwind, para que consumidores nao precisem instalar Tailwind ou configurar CSS.",
+      "linkedAt": "2026-01-24T19:40:34.119Z",
+      "status": "active"
+    }
+  ],
+  "completed": [],
+  "primary": "self-contained-ui-library"
+}

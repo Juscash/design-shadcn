@@ -1,4 +1,3 @@
-import "@juscash/ui/styles.css";
 import { Button } from "@juscash/ui";
 
 function App() {
@@ -21,19 +20,30 @@ function App() {
             </h2>
             <div className="space-y-4">
               <div className="flex flex-wrap gap-4">
-                <Button>Default</Button>
+                <Button variant="primary">Primary</Button>
                 <Button variant="secondary">Secondary</Button>
+                <Button variant="neutral">Neutral</Button>
                 <Button variant="destructive">Destructive</Button>
                 <Button variant="outline">Outline</Button>
                 <Button variant="ghost">Ghost</Button>
-                <Button variant="link">Link</Button>
               </div>
 
               <div className="flex flex-wrap gap-4">
-                <Button size="sm">Small</Button>
-                <Button size="default">Default</Button>
-                <Button size="lg">Large</Button>
-                <Button size="icon">🔍</Button>
+                <Button size="s">Small</Button>
+                <Button size="m">Medium</Button>
+                <Button size="xs">Extra Small</Button>
+              </div>
+
+              <div className="flex flex-wrap gap-4">
+                <Button variant="primary" loading={true}>
+                  Loading Primary
+                </Button>
+                <Button variant="secondary" loading={true}>
+                  Loading Secondary
+                </Button>
+                <Button variant="neutral" loading={true}>
+                  Loading Neutral
+                </Button>
               </div>
             </div>
           </div>

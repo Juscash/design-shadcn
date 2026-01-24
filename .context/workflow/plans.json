@@ -1,14 +1,14 @@
 {
   "active": [
     {
-      "slug": "self-contained-ui-library",
-      "path": "plans/self-contained-ui-library.md",
-      "title": "Biblioteca UI Auto-Suficiente (CSS Pre-compilado)",
-      "summary": "Modificar a biblioteca @juscash/ui para ser auto-suficiente, incluindo CSS pre-compilado com Tailwind, para que consumidores nao precisem instalar Tailwind ou configurar CSS.",
-      "linkedAt": "2026-01-24T19:40:34.119Z",
+      "slug": "update-webapp-button-usage",
+      "path": "plans/update-webapp-button-usage.md",
+      "title": "Atualizar app frontend para usar novo Button",
+      "summary": "Atualizar o app frontend (apps/web) para usar as novas variantes e tamanhos do componente Button atualizado, removendo uso de variantes/tamanhos obsoletos e adicionando exemplos das novas funcionalidades",
+      "linkedAt": "2026-01-24T22:57:38.435Z",
       "status": "active"
     }
   ],
   "completed": [],
-  "primary": "self-contained-ui-library"
+  "primary": "update-webapp-button-usage"
 }

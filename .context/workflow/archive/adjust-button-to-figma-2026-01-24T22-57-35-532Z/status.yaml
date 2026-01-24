@@ -1,0 +1,52 @@
+project:
+  name: "adjust-button-to-figma"
+  scale: MEDIUM
+  started: "2026-01-24T22:10:53.690Z"
+  current_phase: V
+
+phases:
+  P:
+    status: filled
+    started_at: "2026-01-24T22:10:53.690Z"
+    completed_at: "2026-01-24T22:32:00.806Z"
+  R:
+    status: filled
+    started_at: "2026-01-24T22:32:00.822Z"
+    completed_at: "2026-01-24T22:32:25.882Z"
+  E:
+    status: filled
+    started_at: "2026-01-24T22:32:25.886Z"
+    completed_at: "2026-01-24T22:40:23.344Z"
+  V:
+    status: completed
+    started_at: "2026-01-24T22:40:23.354Z"
+    completed_at: "2026-01-24T22:41:04.361Z"
+    outputs:
+      - path: "packages/ui/src/components/button/button.tsx"
+        status: filled
+      - path: "packages/ui/src/components/button/button.stories.tsx"
+        status: filled
+      - path: "packages/ui/src/components/button/button.test.tsx"
+        status: filled
+      - path: "packages/ui/src/styles/tokens.css"
+        status: filled
+      - path: "packages/ui/tailwind.config.ts"
+        status: filled
+  C:
+    status: skipped
+    reason: "Not required for scale MEDIUM"
+
+execution:
+  history:
+    - timestamp: "2026-01-24T22:41:04.361Z"
+      phase: V
+      action: completed
+  last_activity: "2026-01-24T22:41:04.361Z"
+  resume_context: "Fase V (Validação) concluída"
+
+approval:
+  plan_created: true
+  plan_approved: true
+  approved_by: "reviewer"
+  approved_at: "2026-01-24T22:32:19.583Z"
+

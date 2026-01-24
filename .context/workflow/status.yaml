@@ -1,41 +1,46 @@
 project:
-  name: "self-contained-ui-library"
-  scale: MEDIUM
-  started: "2026-01-24T19:40:30.051Z"
+  name: "update-webapp-button-usage"
+  scale: SMALL
+  started: "2026-01-24T22:57:35.556Z"
   current_phase: V
 
 phases:
   P:
     status: filled
-    started_at: "2026-01-24T19:40:30.051Z"
-    completed_at: "2026-01-24T19:40:38.161Z"
+    started_at: "2026-01-24T22:57:35.556Z"
+    completed_at: "2026-01-24T22:57:41.856Z"
   R:
-    status: filled
-    started_at: "2026-01-24T19:40:38.163Z"
-    completed_at: "2026-01-24T19:40:50.115Z"
+    status: skipped
+    reason: "Not required for scale SMALL"
   E:
     status: filled
-    started_at: "2026-01-24T19:40:50.117Z"
-    completed_at: "2026-01-24T21:15:36.613Z"
+    started_at: "2026-01-24T22:57:41.864Z"
+    completed_at: "2026-01-24T22:58:04.781Z"
   V:
-    status: in_progress
-    started_at: "2026-01-24T21:15:36.621Z"
+    status: completed
+    started_at: "2026-01-24T22:58:04.786Z"
+    completed_at: "2026-01-24T23:01:59.859Z"
+    outputs:
+      - path: "apps/web/src/App.tsx"
+        status: filled
   C:
     status: skipped
-    reason: "Not required for scale MEDIUM"
+    reason: "Not required for scale SMALL"
 
 execution:
   history:
-    - timestamp: "2026-01-24T21:15:36.621Z"
+    - timestamp: "2026-01-24T23:01:59.859Z"
       phase: V
-      action: started
-  last_activity: "2026-01-24T21:15:36.621Z"
-  resume_context: "Fase V (Validação) em progresso"
+      action: completed
+  last_activity: "2026-01-24T23:01:59.859Z"
+  resume_context: "Fase V (Validação) concluída"
+
+settings:
+  autonomous_mode: true
+  require_plan: true
+  require_approval: false
 
 approval:
   plan_created: true
-  plan_approved: true
-  approved_by: "architect"
-  approved_at: "2026-01-24T19:40:47.029Z"
-  approval_notes: "Plano revisado e aprovado. Arquitetura de CSS pre-compilado validada."
+  plan_approved: false
 

@@ -1,0 +1,14 @@
+{
+  "active": [
+    {
+      "slug": "adjust-button-to-figma",
+      "path": "plans/adjust-button-to-figma.md",
+      "title": "Ajustar componente Button ao design do Figma",
+      "summary": "Ajustar o componente Button existente para corresponder ao design especificado no Figma, incluindo novas variantes, tamanhos, estados e cores",
+      "linkedAt": "2026-01-24T22:11:00.057Z",
+      "status": "active"
+    }
+  ],
+  "completed": [],
+  "primary": "adjust-button-to-figma"
+}
