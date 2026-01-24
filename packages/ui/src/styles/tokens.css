@@ -1,5 +1,5 @@
 @layer base {
-  :root {
+:root {
     /* Design System Tokens (Figma) */
     --neutral-0: 0 0% 100%;
     --neutral-50: 0 0% 98%;
@@ -13,17 +13,29 @@
     --neutral-800: 0 0% 14.9%;
     --neutral-900: 0 0% 9%;
 
-    /* Brand Primary Colors */
-    --brand-primary-50: 134 100% 83.3%;
-    --brand-primary-100: 134 81.4% 74.7%;
-    --brand-primary-200: 136 62.8% 64.1%;
-    --brand-primary-300: 139 52.7% 53.5%;
-    --brand-primary-400: 142 62.2% 45.7%;
-    --brand-primary-500: 147 100% 30.6%;
-    --brand-primary-600: 143 100% 26.3%;
-    --brand-primary-700: 138 100% 22.2%;
-    --brand-primary-800: 132 100% 18%;
-    --brand-primary-900: 125 100% 13.9%;
+    /* Brand Primary Colors - #008633 */
+    --brand-primary-50: 136 100% 89.8%;
+    --brand-primary-100: 136 81.8% 79.2%;
+    --brand-primary-200: 136 78.6% 68.6%;
+    --brand-primary-300: 137 100% 53.3%;
+    --brand-primary-400: 142 100% 40%;
+    --brand-primary-500: 144 85% 32%;
+    --brand-primary-600: 140 100% 26%;
+    --brand-primary-700: 142 96% 21%;
+    --brand-primary-800: 142 93% 17%;
+    --brand-primary-900: 142 90% 13%;
+
+    /* Brand Secondary Colors - #0d4897 */
+    --brand-secondary-50: 221 100% 91.2%;
+    --brand-secondary-100: 217 100% 82%;
+    --brand-secondary-200: 214 100% 73.1%;
+    --brand-secondary-300: 213 100% 64.1%;
+    --brand-secondary-400: 214 100% 55.1%;
+    --brand-secondary-500: 215 100% 40%;
+    --brand-secondary-600: 214 100% 30%;
+    --brand-secondary-700: 213 96% 21%;
+    --brand-secondary-800: 212 93% 17%;
+    --brand-secondary-900: 210 90% 13%;
 
     /* Shadcn Mappings to Design System */
     --background: var(--neutral-50);
@@ -54,7 +66,26 @@
     --input: var(--neutral-300);
     --ring: var(--brand-primary-500);
 
-    --radius: 0.5rem;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+
+    /* Button Colors */
+    --button-brand-default: var(--brand-primary-500);
+    --button-brand-hover: #005c12;
+    --button-brand-disabled: #d4d4d4;
+
+    --button-secondary-default: var(--brand-secondary-500);
+    --button-secondary-hover: #093671;
+    --button-secondary-disabled: #d4d4d4;
+
+    --button-neutral-default: #e5e5e5;
+    --button-neutral-hover: #a3a3a3;
+    --button-neutral-disabled: #d4d4d4;
+
+    --button-destructive-default: #d2190b;
+    --button-destructive-hover: #9d231c;
+    --button-destructive-disabled: #d4d4d4;
   }
 
   /* Dark mode tokens */

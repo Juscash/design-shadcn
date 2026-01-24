@@ -8,7 +8,26 @@ const config: Config = {
       colors: {
         border: "hsl(var(--border))",
         background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))"
+        foreground: "hsl(var(--foreground))",
+        primary: "hsl(var(--primary))",
+        secondary: "hsl(var(--secondary))",
+        muted: "hsl(var(--muted))",
+        accent: "hsl(var(--accent))",
+        destructive: "hsl(var(--destructive))",
+        ring: "hsl(var(--ring))",
+        radius: {
+          sm: "var(--radius-sm)",
+          md: "var(--radius-md)",
+          lg: "var(--radius-lg)"
+        }
+      },
+      spacing: {
+        '3': '0.75rem',
+        '2': '0.5rem',
+        '1': '0.25rem',
+      },
+      borderRadius: {
+        '4px': '4px',
       }
     }
   },

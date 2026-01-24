@@ -8,11 +8,14 @@ const meta = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "destructive", "outline", "secondary", "ghost", "link"]
+      options: ["primary", "secondary", "neutral", "destructive", "outline", "ghost"]
     },
     size: {
       control: "select",
-      options: ["default", "sm", "lg", "icon"]
+      options: ["m", "s", "xs"]
+    },
+    loading: {
+      control: "boolean"
     }
   }
 } satisfies Meta<typeof Button>
@@ -20,22 +23,34 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const Primary: Story = {
   args: {
-    children: "Button"
+    variant: "primary",
+    size: "m",
+    children: "Primary Button"
   }
 }
 
 export const Secondary: Story = {
   args: {
     variant: "secondary",
+    size: "m",
     children: "Secondary"
+  }
+}
+
+export const Neutral: Story = {
+  args: {
+    variant: "neutral",
+    size: "m",
+    children: "Neutral"
   }
 }
 
 export const Destructive: Story = {
   args: {
     variant: "destructive",
+    size: "m",
     children: "Destructive"
   }
 }
@@ -43,6 +58,7 @@ export const Destructive: Story = {
 export const Outline: Story = {
   args: {
     variant: "outline",
+    size: "m",
     children: "Outline"
   }
 }
@@ -50,34 +66,94 @@ export const Outline: Story = {
 export const Ghost: Story = {
   args: {
     variant: "ghost",
+    size: "m",
     children: "Ghost"
   }
 }
 
-export const Link: Story = {
+export const SizeM: Story = {
   args: {
-    variant: "link",
-    children: "Link"
+    variant: "primary",
+    size: "m",
+    children: "Medium"
   }
 }
 
-export const Small: Story = {
+export const SizeS: Story = {
   args: {
-    size: "sm",
+    variant: "primary",
+    size: "s",
     children: "Small"
   }
 }
 
-export const Large: Story = {
+export const SizeXS: Story = {
   args: {
-    size: "lg",
-    children: "Large"
+    variant: "primary",
+    size: "xs",
+    children: "Extra Small"
   }
 }
 
-export const Icon: Story = {
+export const Loading: Story = {
   args: {
-    size: "icon",
-    children: "🔍"
+    variant: "primary",
+    size: "m",
+    loading: true,
+    children: "Loading..."
   }
+}
+
+export const Disabled: Story = {
+  args: {
+    variant: "primary",
+    size: "m",
+    disabled: true,
+    children: "Disabled"
+  }
+}
+
+export const AllVariants: Story = {
+  render: () => (
+    <div className="flex gap-4 items-end">
+      <Button variant="primary" size="m">Primary</Button>
+      <Button variant="secondary" size="m">Secondary</Button>
+      <Button variant="neutral" size="m">Neutral</Button>
+      <Button variant="destructive" size="m">Destructive</Button>
+      <Button variant="outline" size="m">Outline</Button>
+      <Button variant="ghost" size="m">Ghost</Button>
+    </div>
+  ),
+  argTypes: { variant: { control: false }, size: { control: false } }
+}
+
+export const AllSizes: Story = {
+  render: () => (
+    <div className="flex gap-4 items-end">
+      <Button variant="primary" size="m">Medium</Button>
+      <Button variant="primary" size="s">Small</Button>
+      <Button variant="primary" size="xs">XS</Button>
+    </div>
+  ),
+  argTypes: { variant: { control: false }, size: { control: false } }
+}
+
+export const AllStates: Story = {
+  render: () => (
+    <div className="flex gap-4">
+      <div>
+        <div className="mb-2 text-sm font-medium">Default</div>
+        <Button variant="primary" size="m">Button</Button>
+      </div>
+      <div>
+        <div className="mb-2 text-sm font-medium">Loading</div>
+        <Button variant="primary" size="m" loading>Button</Button>
+      </div>
+      <div>
+        <div className="mb-2 text-sm font-medium">Disabled</div>
+        <Button variant="primary" size="m" disabled>Button</Button>
+      </div>
+    </div>
+  ),
+  argTypes: { variant: { control: false }, size: { control: false } }
 }
