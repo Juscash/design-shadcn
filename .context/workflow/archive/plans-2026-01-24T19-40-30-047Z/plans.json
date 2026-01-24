@@ -1,0 +1,13 @@
+{
+  "active": [
+    {
+      "slug": "update-tailwind-config",
+      "path": "plans/update-tailwind-config.md",
+      "title": "Update Tailwind Config from Figma",
+      "linkedAt": "2026-01-24T19:17:10.890Z",
+      "status": "active"
+    }
+  ],
+  "completed": [],
+  "primary": "update-tailwind-config"
+}

@@ -1,0 +1,66 @@
+@layer base {
+  :root {
+    /* Design System Tokens (Figma) */
+    --neutral-0: 0 0% 100%;
+    --neutral-50: 0 0% 98%;
+    --neutral-100: 0 0% 96.1%;
+    --neutral-200: 0 0% 89.8%;
+    --neutral-300: 0 0% 83.1%;
+    --neutral-400: 0 0% 63.9%;
+    --neutral-500: 240 0.5% 42.9%;
+    --neutral-600: 0 0% 32.2%;
+    --neutral-700: 0 0% 25.1%;
+    --neutral-800: 0 0% 14.9%;
+    --neutral-900: 0 0% 9%;
+
+    /* Brand Primary Colors */
+    --brand-primary-50: 134 100% 83.3%;
+    --brand-primary-100: 134 81.4% 74.7%;
+    --brand-primary-200: 136 62.8% 64.1%;
+    --brand-primary-300: 139 52.7% 53.5%;
+    --brand-primary-400: 142 62.2% 45.7%;
+    --brand-primary-500: 147 100% 30.6%;
+    --brand-primary-600: 143 100% 26.3%;
+    --brand-primary-700: 138 100% 22.2%;
+    --brand-primary-800: 132 100% 18%;
+    --brand-primary-900: 125 100% 13.9%;
+
+    /* Shadcn Mappings to Design System */
+    --background: var(--neutral-50);
+    --foreground: var(--neutral-900);
+
+    --card: var(--neutral-0);
+    --card-foreground: var(--neutral-900);
+
+    --popover: var(--neutral-0);
+    --popover-foreground: var(--neutral-900);
+
+    --primary: var(--brand-primary-500);
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: var(--brand-secondary-500);
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: var(--neutral-100);
+    --muted-foreground: var(--neutral-500);
+
+    --accent: var(--neutral-100);
+    --accent-foreground: var(--neutral-900);
+
+    --destructive: var(--feedback-red-500);
+    --destructive-foreground: 0 0% 100%;
+
+    --border: var(--neutral-300);
+    --input: var(--neutral-300);
+    --ring: var(--brand-primary-500);
+
+    --radius: 0.5rem;
+  }
+
+  /* Dark mode tokens */
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    /* ... outros tokens dark ... */
+  }
+}

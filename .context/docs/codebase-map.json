@@ -1,0 +1,203 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-01-24T16:05:10.400Z",
+  "stack": {
+    "primaryLanguage": "typescript",
+    "languages": [
+      "javascript",
+      "typescript"
+    ],
+    "frameworks": [],
+    "buildTools": [],
+    "testFrameworks": [
+      "vitest"
+    ],
+    "packageManager": "npm",
+    "isMonorepo": false,
+    "hasDocker": false,
+    "hasCI": true
+  },
+  "structure": {
+    "totalFiles": 66,
+    "topDirectories": [
+      {
+        "name": "apps",
+        "fileCount": 43
+      },
+      {
+        "name": "package-lock.json",
+        "fileCount": 1
+      },
+      {
+        "name": "package.json",
+        "fileCount": 1
+      },
+      {
+        "name": "packages",
+        "fileCount": 17
+      },
+      {
+        "name": "README.md",
+        "fileCount": 1
+      },
+      {
+        "name": "tsconfig.json",
+        "fileCount": 1
+      },
+      {
+        "name": "vitest.config.ts",
+        "fileCount": 1
+      },
+      {
+        "name": "vitest.setup.ts",
+        "fileCount": 1
+      }
+    ],
+    "languageDistribution": [
+      {
+        "extension": ".ts",
+        "count": 23
+      },
+      {
+        "extension": ".js",
+        "count": 14
+      },
+      {
+        "extension": ".json",
+        "count": 9
+      },
+      {
+        "extension": ".tsx",
+        "count": 5
+      },
+      {
+        "extension": ".md",
+        "count": 3
+      },
+      {
+        "extension": ".html",
+        "count": 2
+      },
+      {
+        "extension": ".map",
+        "count": 2
+      },
+      {
+        "extension": ".css",
+        "count": 2
+      },
+      {
+        "extension": ".cjs",
+        "count": 2
+      },
+      {
+        "extension": ".mjs",
+        "count": 2
+      }
+    ]
+  },
+  "architecture": {
+    "layers": [
+      {
+        "name": "Utils",
+        "description": "Shared utilities and helpers",
+        "directories": [
+          "packages\\ui\\src\\lib"
+        ],
+        "symbolCount": 1,
+        "dependsOn": []
+      },
+      {
+        "name": "Components",
+        "description": "UI components and views",
+        "directories": [
+          "packages\\ui\\src\\components",
+          "packages\\ui\\src\\components\\button"
+        ],
+        "symbolCount": 2,
+        "dependsOn": [
+          "Utils"
+        ]
+      }
+    ],
+    "patterns": [],
+    "entryPoints": [
+      "packages\\ui\\src\\index.ts",
+      "packages\\ui\\src\\components\\index.ts",
+      "packages\\ui\\src\\components\\button\\index.ts",
+      "apps\\web\\src\\main.tsx"
+    ]
+  },
+  "symbols": {
+    "classes": [],
+    "interfaces": [
+      {
+        "name": "ButtonProps",
+        "kind": "interface",
+        "file": "packages\\ui\\src\\components\\button\\button.tsx",
+        "line": 35,
+        "exported": true
+      }
+    ],
+    "functions": [
+      {
+        "name": "cn",
+        "kind": "function",
+        "file": "packages\\ui\\src\\lib\\utils.ts",
+        "line": 4,
+        "exported": true
+      }
+    ],
+    "types": [
+      {
+        "name": "Story",
+        "kind": "type",
+        "file": "packages\\ui\\src\\components\\button\\button.stories.tsx",
+        "line": 21,
+        "exported": false
+      }
+    ],
+    "enums": []
+  },
+  "publicAPI": [
+    {
+      "name": "ButtonProps",
+      "kind": "interface",
+      "file": "packages\\ui\\src\\components\\button\\button.tsx",
+      "line": 35,
+      "exported": true
+    },
+    {
+      "name": "cn",
+      "kind": "function",
+      "file": "packages\\ui\\src\\lib\\utils.ts",
+      "line": 4,
+      "exported": true
+    }
+  ],
+  "dependencies": {
+    "mostImported": [
+      {
+        "file": "C:\\projetos\\design-shadcn\\packages\\ui\\src\\components\\button\\button.tsx",
+        "importedBy": 2
+      },
+      {
+        "file": "C:\\projetos\\design-shadcn\\apps\\web\\src\\App.tsx",
+        "importedBy": 1
+      },
+      {
+        "file": "C:\\projetos\\design-shadcn\\apps\\web\\src\\index.css",
+        "importedBy": 1
+      },
+      {
+        "file": "C:\\projetos\\design-shadcn\\packages\\ui\\src\\lib\\utils.ts",
+        "importedBy": 1
+      }
+    ]
+  },
+  "stats": {
+    "totalSymbols": 3,
+    "exportedSymbols": 2,
+    "analysisTimeMs": 159
+  }
+}

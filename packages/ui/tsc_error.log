@@ -1,0 +1,6 @@
+src/components/button/button.test.tsx(8,40): error TS2339: Property 'toHaveTextContent' does not exist on type 'Assertion<HTMLElement>'.
+src/components/button/button.test.tsx(12,11): error TS6133: 'container' is declared but its value is never read.
+src/components/button/button.test.tsx(14,20): error TS2339: Property 'toHaveClass' does not exist on type 'Assertion<HTMLElement>'.
+src/components/button/button.test.tsx(18,11): error TS6133: 'container' is declared but its value is never read.
+src/components/button/button.test.tsx(20,20): error TS2339: Property 'toHaveClass' does not exist on type 'Assertion<HTMLElement>'.
+src/components/button/button.test.tsx(26,20): error TS2339: Property 'toBeDisabled' does not exist on type 'Assertion<HTMLElement>'.

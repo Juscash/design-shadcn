@@ -1,0 +1,54 @@
+{
+  "name": "@juscash/monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "UI Component Library Monorepo",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/web",
+    "build": "npm run build --workspaces",
+    "build:ui": "npm run build --workspace=packages/ui",
+    "storybook": "storybook dev -p 6006",
+    "build:storybook": "storybook build",
+    "test": "vitest",
+    "test:ui": "vitest run",
+    "version:patch": "changeset version && npm install",
+    "version:minor": "changeset version && npm install",
+    "version:major": "changeset version && npm install",
+    "version:publish": "git push --follow-tags",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "ui",
+    "components",
+    "design-system"
+  ],
+  "author": "Juscash",
+  "license": "MIT",
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@storybook/addon-essentials": "^8.1.10",
+    "@storybook/addon-interactions": "^8.1.10",
+    "@storybook/addon-links": "^8.1.10",
+    "@storybook/addon-onboarding": "^8.1.10",
+    "@storybook/blocks": "^8.1.10",
+    "@storybook/react": "^8.1.10",
+    "@storybook/react-vite": "^8.1.10",
+    "@storybook/test": "^8.1.10",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^16.0.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/ui": "^1.6.0",
+    "autoprefixer": "^10.4.19",
+    "jsdom": "^24.0.0",
+    "postcss": "^8.4.38",
+    "storybook": "^8.1.10",
+    "tailwindcss": "^3.4.3",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}
