@@ -39,9 +39,9 @@ packages/ui/src/components/<componente>/
 ### 1. Definição de Props
 
 ```typescript
-interface ButtonProps 
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>, 
-  VariantProps<typeof buttonVariants> {
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
   // Propriedades específicas
 }
 ```
@@ -53,18 +53,18 @@ const buttonVariants = cva("base-button", {
   variants: {
     variant: {
       primary: "bg-primary text-white",
-      secondary: "bg-secondary text-gray-800"
+      secondary: "bg-secondary text-gray-800",
     },
     size: {
       sm: "text-sm px-2",
-      md: "text-base px-4"
-    }
+      md: "text-base px-4",
+    },
   },
   defaultVariants: {
     variant: "primary",
-    size: "md"
-  }
-})
+    size: "md",
+  },
+});
 ```
 
 ### 3. Implementação com Forward Ref
@@ -77,9 +77,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     />
-  )
-)
-Button.displayName = "Button"
+  ),
+);
+Button.displayName = "Button";
 ```
 
 ## 🛠️ Ferramentas e Dependências
@@ -88,8 +88,28 @@ Button.displayName = "Button"
 - **class-variance-authority (cva)**: Variantes
 - **tailwind-merge**: Mesclagem de classes
 - **Tailwind CSS**: Sistema de design
+- **shadcn CLI**: Instalação de componentes base (opcional)
 
 ## 🔄 Fluxo de Criação
+
+### Opção 1: Instalar via shadcn CLI (Recomendado)
+
+Para componentes que existem no registry shadcn:
+
+1. Consultar componente via MCP (ver skill `shadcn-mcp-integration`)
+2. Instalar base: `npx shadcn@latest add <componente> --cwd packages/ui -p src/components/<componente> -y`
+3. Customizar conforme design system (ajustar variantes, cores, tokens)
+
+**Vantagens:**
+
+- ✅ Componente base já implementado
+- ✅ Acessibilidade incluída
+- ✅ Padrões shadcn seguidos
+- ✅ Mais rápido
+
+### Opção 2: Criar do Zero
+
+Para componentes customizados não disponíveis no registry:
 
 1. Definir contrato de props
 2. Implementar variantes com `cva`
@@ -131,21 +151,21 @@ npm run storybook    # Documentação
 ## 🔍 Consumo Simplificado
 
 ```typescript
-import "@juscash/ui/styles.css"
-import { Button } from "@juscash/ui"
+import "@juscash/ui/styles.css";
+import { Button } from "@juscash/ui";
 
 function App() {
-  return <Button variant="primary">Clique aqui</Button>
+  return <Button variant="primary">Clique aqui</Button>;
 }
 ```
 
 ## 📦 Decisões de Arquitetura
 
-| Aspecto | Estratégia | Benefícios |
-|---------|------------|------------|
-| CSS | Pré-compilado | Performático, Simples |
-| Variantes | CVA | Flexível, Tipado |
-| Tokens | CSS Variables | Customizável, Consistente |
+| Aspecto   | Estratégia    | Benefícios                |
+| --------- | ------------- | ------------------------- |
+| CSS       | Pré-compilado | Performático, Simples     |
+| Variantes | CVA           | Flexível, Tipado          |
+| Tokens    | CSS Variables | Customizável, Consistente |
 
 ## 🚀 Próximos Passos
 
@@ -158,3 +178,4 @@ function App() {
 - [Tailwind CSS](https://tailwindcss.com)
 - [class-variance-authority](https://github.com/joe-bell/cva)
 - [React Docs](https://reactjs.org)
+- [Skill: shadcn-mcp-integration](../shadcn-mcp-integration/SKILL.md) - Instalação via CLI

@@ -5,37 +5,38 @@ import { Button } from "./button"
 describe("Button", () => {
   it("renders button with text", () => {
     render(<Button>Click me</Button>)
-    expect(screen.getByRole("button")).toHaveTextContent("Click me")
+    const button = screen.getByRole("button")
+    expect(button.textContent).toContain("Click me")
   })
 
   it("renders primary variant correctly", () => {
     render(<Button variant="primary">Primary</Button>)
     const button = screen.getByRole("button")
-    expect(button.className).toContain("bg-[#008633]")
+    expect(button.className).toContain("bg-[var(--button-brand-default)]")
   })
 
   it("renders secondary variant correctly", () => {
     render(<Button variant="secondary">Secondary</Button>)
     const button = screen.getByRole("button")
-    expect(button.className).toContain("bg-[#0d4897]")
+    expect(button.className).toContain("bg-[var(--button-secondary-default)]")
   })
 
   it("renders neutral variant correctly", () => {
     render(<Button variant="neutral">Neutral</Button>)
     const button = screen.getByRole("button")
-    expect(button.className).toContain("bg-[#e5e5e5]")
+    expect(button.className).toContain("bg-[var(--button-neutral-default)]")
   })
 
   it("renders destructive variant correctly", () => {
     render(<Button variant="destructive">Delete</Button>)
     const button = screen.getByRole("button")
-    expect(button.className).toContain("bg-[#d2190b]")
+    expect(button.className).toContain("bg-[var(--button-destructive-default)]")
   })
 
   it("renders outline variant correctly", () => {
     render(<Button variant="outline">Outline</Button>)
     const button = screen.getByRole("button")
-    expect(button.className).toContain("border-[#d4d4d4]")
+    expect(button.className).toContain("border-[hsl(var(--neutral-300))]")
   })
 
   it("renders ghost variant correctly", () => {
@@ -64,7 +65,7 @@ describe("Button", () => {
 
   it("can be disabled", () => {
     render(<Button disabled>Disabled</Button>)
-    const button = screen.getByRole("button")
+    const button = screen.getByRole("button") as HTMLButtonElement
     expect(button.disabled).toBe(true)
   })
 
@@ -76,7 +77,7 @@ describe("Button", () => {
 
   it("disables button when loading", () => {
     render(<Button loading>Loading...</Button>)
-    const button = screen.getByRole("button")
+    const button = screen.getByRole("button") as HTMLButtonElement
     expect(button.disabled).toBe(true)
   })
 
@@ -84,5 +85,15 @@ describe("Button", () => {
     render(<Button loading>Loading...</Button>)
     const spinner = document.querySelector("svg")
     expect(spinner).toBeDefined()
+  })
+
+  it("renders as child element when asChild is true", () => {
+    render(
+      <Button asChild>
+        <a href="/home">Home</a>
+      </Button>,
+    )
+    const link = screen.getByRole("link")
+    expect(link.className).toContain("inline-flex")
   })
 })

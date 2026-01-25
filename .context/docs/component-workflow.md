@@ -20,6 +20,7 @@ Este guia descreve o processo de criação de componentes usando uma abordagem d
 - 🆕 CSS pré-compilado incluído na biblioteca
 - 🚀 Importação simplificada de estilos
 - 🎨 Tokens de design pré-configurados
+- 🔌 Integração com MCP shadcn para instalação de componentes
 
 ## Pré-requisitos
 
@@ -30,6 +31,27 @@ Este guia descreve o processo de criação de componentes usando uma abordagem d
 ## Fluxo de Trabalho Detalhado
 
 ### 1. Preparação e Análise
+
+#### Para Componentes Baseados em shadcn
+
+1. **Consultar via MCP shadcn**:
+
+   - Usar `mcp_shadcn_search_components` para buscar componente
+   - Usar `mcp_shadcn_get_component_info` para ver detalhes
+   - Analisar props, variantes e dependências disponíveis
+
+2. **Instalar componente base**:
+
+   ```bash
+   npx shadcn@latest add <componente> --cwd packages/ui -p src/components/<componente> -y
+   ```
+
+3. **Planejar customizações**:
+   - Comparar com design do Figma (se houver)
+   - Identificar ajustes necessários em variantes/cores
+   - Definir props adicionais específicas do projeto
+
+#### Para Componentes Customizados
 
 - Definir escopo do componente
 - Analisar variantes e estados necessários
@@ -61,32 +83,29 @@ packages/ui/src/
 #### Exemplo de Implementação
 
 ```typescript
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
-const buttonVariants = cva(
-  "inline-flex items-center justify-center", 
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground",
-        secondary: "bg-secondary text-secondary-foreground"
-      },
-      size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3"
-      }
+const buttonVariants = cva("inline-flex items-center justify-center", {
+  variants: {
+    variant: {
+      default: "bg-primary text-primary-foreground",
+      secondary: "bg-secondary text-secondary-foreground",
     },
-    defaultVariants: {
-      variant: "default",
-      size: "default"
-    }
-  }
-)
+    size: {
+      default: "h-10 px-4 py-2",
+      sm: "h-9 rounded-md px-3",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+});
 
-interface ButtonProps 
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>, 
-  VariantProps<typeof buttonVariants> {
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
   // Propriedades adicionais específicas
 }
 
@@ -97,8 +116,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     />
-  )
-)
+  ),
+);
 ```
 
 ### 4. Configuração de CSS
@@ -119,11 +138,11 @@ npm run dev           # Testar no projeto web
 
 ```tsx
 // Importação única de estilos
-import "@juscash/ui/styles.css"
-import { Button } from "@juscash/ui"
+import "@juscash/ui/styles.css";
+import { Button } from "@juscash/ui";
 
 function App() {
-  return <Button>Clique Aqui</Button>
+  return <Button>Clique Aqui</Button>;
 }
 ```
 

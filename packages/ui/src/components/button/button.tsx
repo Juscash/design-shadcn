@@ -1,30 +1,31 @@
 import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap font-normal leading-[1.2] transition-colors focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-border focus-visible:ring-offset-0 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed",
   {
     variants: {
       variant: {
         primary:
-          "bg-[#008633] text-white hover:bg-[#005c12] disabled:bg-[#d4d4d4]",
+          "bg-[var(--button-brand-default)] text-[hsl(var(--neutral-50))] hover:bg-[var(--button-brand-hover)] disabled:bg-[var(--button-brand-disabled)] disabled:text-[hsl(var(--neutral-400))]",
         secondary:
-          "bg-[#0d4897] text-white hover:bg-[#093671] disabled:bg-[#d4d4d4]",
+          "bg-[var(--button-secondary-default)] text-[hsl(var(--neutral-50))] hover:bg-[var(--button-secondary-hover)] disabled:bg-[var(--button-secondary-disabled)] disabled:text-[hsl(var(--neutral-400))]",
         neutral:
-          "bg-[#e5e5e5] text-[#262626] hover:bg-[#a3a3a3] hover:text-white disabled:bg-[#d4d4d4] disabled:text-[#a3a3a3]",
+          "bg-[var(--button-neutral-default)] text-[hsl(var(--neutral-800))] hover:bg-[var(--button-neutral-hover)] hover:text-[hsl(var(--neutral-50))] disabled:bg-[var(--button-neutral-disabled)] disabled:text-[hsl(var(--neutral-400))]",
         destructive:
-          "bg-[#d2190b] text-white hover:bg-[#9d231c] disabled:bg-[#d4d4d4]",
+          "bg-[var(--button-destructive-default)] text-[hsl(var(--neutral-50))] hover:bg-[var(--button-destructive-hover)] disabled:bg-[var(--button-destructive-disabled)] disabled:text-[hsl(var(--neutral-400))]",
         outline:
-          "border border-[#d4d4d4] bg-transparent hover:bg-[#e5e5e5] hover:text-[#262626] disabled:border-[#e5e5e5] disabled:text-[#a3a3a3]",
+          "border border-[hsl(var(--neutral-300))] bg-transparent text-[hsl(var(--neutral-800))] hover:bg-[hsl(var(--neutral-100))] disabled:border-[hsl(var(--neutral-200))] disabled:text-[hsl(var(--neutral-400))]",
         ghost:
-          "bg-transparent hover:bg-[#e5e5e5] hover:text-[#262626] disabled:text-[#a3a3a3]",
+          "bg-transparent text-[hsl(var(--neutral-800))] hover:bg-[hsl(var(--neutral-100))] disabled:text-[hsl(var(--neutral-400))]",
       },
       size: {
-        m: "h-[36px] px-3 py-2 rounded-[8px]",
-        s: "h-[32px] px-3 py-2 rounded-[8px] text-xs",
-        xs: "h-[24px] px-2 py-1 rounded-[4px] text-xs",
+        m: "h-[36px] px-3 py-2 rounded-[8px] text-[13px]",
+        s: "h-[32px] px-3 py-2 rounded-[8px] text-[13px]",
+        xs: "h-[24px] px-2 py-1 rounded-[4px] text-[10px]",
       },
     },
     defaultVariants: {
@@ -43,23 +44,27 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { className, variant, size, loading, disabled, children, ...props },
+    { className, variant, size, loading, asChild = false, disabled, children, ...props },
     ref,
   ) => {
+    const Component = asChild ? Slot : "button";
+    const isDisabled = disabled || loading;
     return (
-      <button
+      <Component
         className={cn(
           buttonVariants({ variant, size, className }),
           loading ? "relative" : "",
         )}
         ref={ref}
-        disabled={disabled || loading}
+        disabled={asChild ? undefined : isDisabled}
+        aria-disabled={asChild && isDisabled ? true : undefined}
+        aria-busy={loading || undefined}
         {...props}
       >
         {loading ? (
           <span className="absolute inset-0 flex items-center justify-center">
             <svg
-              className="animate-spin h-4 w-4 text-current"
+              className="animate-spin h-[13px] w-[13px] text-current"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -82,7 +87,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ) : (
           children
         )}
-      </button>
+      </Component>
     );
   },
 );

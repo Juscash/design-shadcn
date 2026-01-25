@@ -16,6 +16,7 @@ requires:
   skills:
     - feature-breakdown
     - figma-component-intake
+    - shadcn-mcp-integration
     - shadcn-component-authoring
     - showcase-creation
     - test-generation
@@ -61,49 +62,27 @@ O agente Feature Developer implementa novas funcionalidades e componentes para a
 
 Quando o componente é baseado em um componente shadcn existente:
 
-#### 2.1 Consultar Documentação via MCP shadcn
+#### 2.1 Consultar e Instalar via shadcn
 
-Usar o **MCP shadcn** integrado para buscar informações do componente:
+Usar skill **`shadcn-mcp-integration`** para:
 
-```
-# Ferramentas disponíveis do MCP shadcn:
-- mcp_shadcn_list_components: Lista todos os componentes disponíveis no registry
-- mcp_shadcn_search_components: Busca componentes por nome ou funcionalidade
-- mcp_shadcn_get_component_info: Obtém detalhes de um componente específico
-```
+- Consultar componente no registry via MCP
+- Instalar com CLI em `packages/ui/src/components/<componente>`
+- Ver detalhes completos em [`.context/skills/shadcn-mcp-integration/SKILL.md`](../../skills/shadcn-mcp-integration/SKILL.md)
 
-**Exemplos de uso:**
+**Resumo do fluxo:**
 
-- "Show me all available components in the shadcn registry"
-- "Get details for the button component"
-- "Search for form components"
+1. Consultar: `mcp_shadcn_get_component_info` para ver props/variantes
+2. Instalar: `npx shadcn@latest add <componente> --cwd packages/ui -p src/components/<componente> -y`
 
-> **Nota:** O MCP shadcn está configurado em `opencode.json` e permite consultar o registry sem precisar de URL externa.
-
-#### 2.2 Instalar Componente Base via CLI
-
-Executar o comando shadcn para adicionar o componente:
-
-```bash
-# Comando com path customizado para instalar na pasta correta:
-npx shadcn@latest add <componente> --cwd packages/ui -p src/components/<componente> -y
-```
-
-**Opções importantes do CLI:**
-| Opção | Descrição |
-|-------|-----------|
-| `--cwd packages/ui` | Define o diretório de trabalho (onde está o `components.json`) |
-| `-p src/components/<componente>` | Define o caminho exato do componente |
-| `-y` | Pula confirmação (uso automatizado) |
-| `-o` | Sobrescreve arquivos existentes |
-
-#### 2.3 Customizar de Acordo com o Design Figma
+#### 2.2 Customizar de Acordo com o Design Figma
 
 Após instalação do componente base:
 
 1. Usar `figma-desktop_get_design_context` para extrair especificações visuais
 2. Usar `figma-desktop_get_variable_defs` para mapear tokens/cores
-3. Modificar o componente instalado para:
+3. Usar `figma-desktop_get_screenshot` para validar layout/estados
+4. Modificar o componente instalado para:
    - Ajustar variantes conforme design
    - Aplicar tokens de cor do design system
    - Adicionar/remover props conforme necessidade
