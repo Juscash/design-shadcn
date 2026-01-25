@@ -37,6 +37,9 @@
     --brand-secondary-800: #093671;
     --brand-secondary-900: #072854;
 
+    /* Feedback Colors */
+    --feedback-red-500: #d2190b;
+
     /* Shadcn Mappings to Design System */
     --background: var(--neutral-50);
     --foreground: var(--neutral-900);
