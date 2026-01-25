@@ -1,113 +1,114 @@
----
-type: agent
-name: Feature Developer
-description: Implementa novas features e componentes
-agentType: feature-developer
-phases: [P, E]
-generated: 2026-01-24
-status: filled
-scaffoldVersion: "2.0.0"
-requires:
-  docs:
-    - architecture.md
-    - development-workflow.md
-    - glossary.md
-    - component-workflow.md
-  skills:
-    - feature-breakdown
-    - figma-component-intake
-    - shadcn-component-authoring
-    - showcase-creation
-    - test-generation
-    - documentation
----
+## Mission
 
-# Playbook do Feature Developer (design-shadcn)
+The Feature Developer agent implements new features and components for the UI component library. This agent focuses on creating reusable, accessible, and well-documented React components following shadcn-style patterns. Engage this agent when you need to create new components, extend existing ones, or implement new functionality for the design system.
 
-## Missao
+## Responsibilities
 
-Entregar features prontas para producao no pacote de UI (`packages/ui`) criando novos componentes, variantes e extensoes de API de forma consistente com o estilo shadcn deste repositorio (React + TypeScript + Tailwind + cva + `cn`).
+- **Component Implementation**: Create new React components with TypeScript and Tailwind CSS
+- **API Design**: Define prop interfaces and component contracts
+- **Variant Systems**: Implement flexible component APIs using class-variance-authority
+- **Storybook Documentation**: Create comprehensive stories for all component variants
+- **Integration Testing**: Ensure components work within the library ecosystem
+- **Type Safety**: Maintain strict TypeScript compliance and proper exports
+- **Accessibility**: Implement WCAG-compliant components with proper ARIA attributes
 
-Use este agente quando:
+## Best Practices
 
-- voce pedir para criar um componente novo em `@juscash/ui`
-- voce pedir para adicionar variantes/tamanhos/props em um componente existente
-- voce pedir para integrar um componente no app demo (`apps/web`) e no Storybook
+- **Consistent Patterns**: Follow existing component structure (Button as reference)
+- **Prop Interfaces**: Export clear, typed interfaces for all components
+- **Forward Ref**: Use React.forwardRef for interactive components
+- **Variant Design**: Use class-variance-authority for style variants
+- **Utility Functions**: Leverage `cn` utility for class name composition
+- **Comprehensive Testing**: Write unit tests covering all variants and edge cases
+- **Story Coverage**: Document all component states and combinations in Storybook
+- **Package Exports**: Update index files to maintain clean public API
 
-## Onde trabalhar
+## Key Project Resources
 
-- Componentes: `packages/ui/src/components/`
-- Referencia de padrao: `packages/ui/src/components/button/button.tsx`
-- Demo web: `apps/web/src/App.tsx`
+- **Documentation Index**: [`../docs/README.md`](../docs/README.md)
+- **Agent Handbook**: This playbook and [`../agents/README.md`](../agents/README.md)
+- **Contributor Guide**: [`../../AGENTS.md`](../../AGENTS.md)
+- **Architecture Guide**: [`../docs/architecture.md`](../docs/architecture.md)
+- **Development Workflow**: [`../docs/development-workflow.md`](../docs/development-workflow.md)
+- **Component Workflow**: [`../docs/component-workflow.md`](../docs/component-workflow.md)
+- **Tooling Guide**: [`../docs/tooling.md`](../docs/tooling.md)
 
-## Simbolos-chave
+## Repository Starting Points
 
-- `ButtonProps` em `packages/ui/src/components/button/button.tsx` (padrao de como exportar `*Props` como API publica)
+- **Component Source**: `packages/ui/src/components/` - Component implementations
+- **Utilities**: `packages/ui/src/lib/` - Shared helper functions
+- **Component Tests**: `packages/ui/src/components/**/*.test.tsx` - Unit tests
+- **Storybook Stories**: `packages/ui/src/components/**/*.stories.tsx` - Documentation
+- **Package Exports**: `packages/ui/src/components/index.ts` - Public component API
+- **Library Entry**: `packages/ui/src/index.ts` - Main package exports
 
-## Fluxo obrigatorio: criar componente novo (JusCash)
+## Key Files
 
-1) Entrada (sempre perguntar)
+- **Component Reference**: [`packages/ui/src/components/button/button.tsx`](../../../packages/ui/src/components/button/button.tsx) - Template for new components
+- **Utility Functions**: [`packages/ui/src/lib/utils.ts`](../../../packages/ui/src/lib/utils.ts) - Shared helpers like `cn`
+- **Component Index**: [`packages/ui/src/components/index.ts`](../../../packages/ui/src/components/index.ts) - Component exports
+- **Library Index**: [`packages/ui/src/index.ts`](../../../packages/ui/src/index.ts) - Package exports
+- **Storybook Config**: [`.storybook/main.ts`](../../../.storybook/main.ts) - Documentation setup
+- **Build Config**: [`packages/ui/tsup.config.ts`](../../../packages/ui/tsup.config.ts) - Build process
 
-- Nome do componente (ex.: `Badge`, `EmptyState`, `Alert`).
-- Existe link do Figma do componente?
+## Architecture Context
 
-2) Se houver Figma
+- **Components Layer**: `packages/ui/src/components/` (2 symbols)
+  - Primary responsibility: UI rendering and user interaction
+  - Key exports: Component implementations and prop interfaces
+  - Dependencies: Utils layer and external React libraries
 
-- Usar `figma-desktop_get_design_context` para extrair estrutura e propriedades.
-- Quando necessario: `figma-desktop_get_variable_defs` (tokens) e `figma-desktop_get_screenshot` (validacao rapida).
+- **Utils Layer**: `packages/ui/src/lib/` (1 symbol)
+  - Primary responsibility: Shared functionality and helper functions
+  - Key exports: Utility functions like `cn` for class merging
+  - Dependencies: Minimal external packages
 
-3) Confirmar especificacao antes de codar
+## Key Symbols for This Agent
 
-- Variantes (ex.: `default`, `secondary`, `destructive`...)
-- Tamanhos (ex.: `sm`, `default`, `lg`...)
-- Estados (hover/focus/disabled/loading/erro/sucesso)
-- Props publicas esperadas e acessibilidade (semantica, aria, teclado)
+- **`ButtonProps`** (Interface) - Reference for component API design
+  - Location: [`packages/ui/src/components/button/button.tsx:37`](../../../packages/ui/src/components/button/button.tsx:37)
+  - Usage: Template for creating consistent prop interfaces
 
-4) Implementar no padrao do repo (shadcn)
+- **`cn`** (Function) - Utility for merging CSS class names
+  - Location: [`packages/ui/src/lib/utils.ts:4`](../../../packages/ui/src/lib/utils.ts:4)
+  - Usage: Combine conditional classes and resolve conflicts in components
 
-- Criar pasta: `packages/ui/src/components/<componente>/`
-- Criar implementacao: `packages/ui/src/components/<componente>/<componente>.tsx`
-- Criar export do modulo: `packages/ui/src/components/<componente>/index.ts`
-- Exportar API publica:
-  - `export interface <ComponentName>Props ...` ou `export type <ComponentName>Props = ...`
-  - `export { <ComponentName> }`
-- Preferir `React.forwardRef` quando for componente interativo/que precisa de ref.
-- Usar `cva` + `VariantProps` + `cn` para variantes/tamanhos quando fizer sentido (igual `Button`).
+## Documentation Touchpoints
 
-5) Exports do pacote
+- **Architecture Notes**: [`../docs/architecture.md`](../docs/architecture.md) - System design and patterns
+- **Component Workflow**: [`../docs/component-workflow.md`](../docs/component-workflow.md) - Development process
+- **Development Workflow**: [`../docs/development-workflow.md`](../docs/development-workflow.md) - Day-to-day processes
+- **Testing Strategy**: [`../docs/testing-strategy.md`](../docs/testing-strategy.md) - Testing guidelines
+- **Project Overview**: [`../docs/project-overview.md`](../docs/project-overview.md) - Getting started guide
 
-- Atualizar `packages/ui/src/components/index.ts` para exportar o novo componente.
+## Collaboration Checklist
 
-6) Showcase obrigatorio
+1. **Confirm Requirements**: Review component specifications and variant requirements
+2. **Check Existing Patterns**: Survey similar components for consistency
+3. **Design Component API**: Define props, variants, and accessibility features
+4. **Plan Testing Strategy**: Define unit tests and Storybook stories needed
+5. **Implement Component**: Follow established patterns and TypeScript conventions
+6. **Update Exports**: Add component to package index files
+7. **Add Documentation**: Create comprehensive stories and examples
+8. **Write Tests**: Implement unit tests covering all functionality
+9. **Validation**: Run build, type checking, and test suites
+10. **Review Integration**: Test component within library ecosystem
 
-- Storybook:
-  - Criar `packages/ui/src/components/<componente>/<componente>.stories.tsx`.
-  - Incluir variacoes principais (variantes/tamanhos/estados).
-- App demo:
-  - Atualizar `apps/web/src/App.tsx` adicionando uma secao do componente no mesmo estilo do `Button`.
+## Hand-off Notes
 
-7) Validar
+After completing feature development work:
 
-- Rodar build/test quando aplicavel:
-  - `npm run build:ui`
-  - `npm run test:ui`
-  - `npm run storybook` (validacao visual)
+**Outcomes**: New or enhanced components with full TypeScript support, comprehensive documentation, test coverage, and proper package integration.
 
-## Fluxo: estender componente existente
+**Remaining Risks**:
+- API design inconsistencies with existing components
+- Bundle size impact from new features
+- Performance implications for complex component variants
+- Accessibility compliance gaps
 
-- Manter compatibilidade: props novas preferencialmente opcionais.
-- Nao renomear/remover props/exportacoes sem pedido explicito.
-- Atualizar stories e demo do `App.tsx` para cobrir o novo comportamento.
-
-## Definicao de pronto
-
-- Compila sem erros de TypeScript.
-- Exporta `*Props` como contrato publico.
-- Tem Storybook atualizado.
-- Tem demo em `apps/web/src/App.tsx`.
-
-## Recursos relacionados
-
-- `.context/docs/component-workflow.md`
-- `.context/docs/development-workflow.md`
-- `.context/docs/architecture.md`
+**Suggested Follow-up**:
+- Monitor bundle size and optimize if needed
+- Gather user feedback from Storybook documentation
+- Consider performance improvements in production scenarios
+- Document any new patterns discovered during development
+- Plan for component API versioning if breaking changes introduced

@@ -1,7 +1,7 @@
 ---
 type: skill
 name: Showcase Creation
-description: Criar e atualizar showcases (Storybook + App demo) para componentes do Design System
+description: Criar e atualizar showcases (Storybook) para componentes do Design System
 skillSlug: showcase-creation
 phases: [E]
 generated: 2026-01-24
@@ -17,10 +17,7 @@ Use esta skill quando um componente novo for criado ou quando um componente exis
 
 ## Objetivo
 
-Garantir que todo componente tenha exemplos consistentes em:
-
-- Storybook (variacoes isoladas)
-- App demo (`apps/web/src/App.tsx`) no mesmo estilo do `Button`
+Garantir que todo componente tenha exemplos consistentes em Storybook para documentação interativa e desenvolvimento visual.
 
 ## Checklist (Storybook)
 
@@ -32,20 +29,52 @@ Garantir que todo componente tenha exemplos consistentes em:
 - `Default`
 - Uma story por variante (se existirem)
 - Uma story por tamanho (se existirem)
-- Uma story de estado (ex.: disabled/loading) quando aplicavel
+- Uma story de estado (ex.: disabled/loading) quando aplicável
 
-## Checklist (App demo)
+## Diretrizes para Stories
 
-1) Atualizar `apps/web/src/App.tsx`.
-2) Adicionar uma secao para o componente:
+- **Variants**: Demonstrar todas as variantes visuais (primary, secondary, destructive, etc.)
+- **Tamanhos**: Mostrar todos os tamanhos disponíveis (sm, md, lg, etc.)
+- **Estados**: Documentar estados interativos (hover, focus, disabled, loading)
+- **Acessibilidade**: Incluir exemplos de uso com ARIA attributes
+- **Controles**: Configurar controles interativos para exploração no Storybook
 
-- `h2` com nome do componente
-- Um bloco com exemplos de variantes
-- Um bloco com exemplos de tamanhos
+## Validação Rápida
 
-3) Manter o layout atual (sem criar novas rotas).
+- `npm run storybook` para visualizar as stories
+- Verificar se todas as variantes estão documentadas
+- Testar interatividade dos controles do Storybook
 
-## Validacao rapida
+## Exemplo de Estrutura
 
-- `npm run storybook`
-- `npm run dev`
+```typescript
+const meta = {
+  title: "Components/Button",
+  component: Button,
+  parameters: {
+    layout: "centered",
+  },
+  argTypes: {
+    variant: {
+      control: "select",
+      options: ["default", "secondary", "destructive"],
+    },
+    size: {
+      control: "select", 
+      options: ["sm", "md", "lg"],
+    },
+    disabled: {
+      control: "boolean",
+    },
+  },
+}
+
+export default meta
+```
+
+## Boas Práticas
+
+- **Documentação Completa**: Cada story deve ter descrição clara do seu propósito
+- **Cobertura Total**: Documentar todas as combinações possíveis de props
+- **Exemplos Reais**: Usar textos e contextos realistas nas demonstrações
+- **Performance**: Manter stories simples para carregamento rápido no Storybook

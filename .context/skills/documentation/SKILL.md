@@ -45,4 +45,3 @@ Use esta skill quando:
 - Boas praticas de acessibilidade (quando aplicavel)
 - Onde ver exemplos:
   - Storybook (`packages/ui/src/components/<componente>/*.stories.tsx`)
-  - App demo (`apps/web/src/App.tsx`)

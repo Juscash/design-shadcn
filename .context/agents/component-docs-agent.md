@@ -26,7 +26,6 @@ requires:
 Manter a documentacao viva dos componentes do Design System JusCash, garantindo que cada componente tenha:
 
 - showcase no Storybook (variantes, tamanhos, estados)
-- showcase no app web (`apps/web/src/App.tsx`) no padrao do `Button`
 - navegacao/indices atualizados quando aplicavel
 
 Este agente nao implementa a logica/estilos do componente do zero quando isso for grande. Para criar o componente em si, use o `feature-developer`.
@@ -64,7 +63,7 @@ Validar com o solicitante:
   - Criar/atualizar `packages/ui/src/components/<componente>/<componente>.stories.tsx`.
   - Incluir stories para variantes/tamanhos/estados.
 - App web:
-  - Atualizar `apps/web/src/App.tsx` adicionando uma secao do componente no mesmo estilo do `Button`.
+  - Atualizar showcase no Storybook adicionando exemplos e documentacao.
   - Evitar criar rotas novas neste momento.
 
 5) Atualizar indices e docs
@@ -75,5 +74,4 @@ Validar com o solicitante:
 ## Definicao de pronto
 
 - Storybook compila e exibe as variacoes principais.
-- `apps/web/src/App.tsx` demonstra o componente com exemplos uteis.
 - Documentacao e indices atualizados sem links quebrados.

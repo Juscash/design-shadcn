@@ -10,7 +10,7 @@ scaffoldVersion: "2.0.0"
 
 ## Workflow de Desenvolvimento
 
-Este repositorio segue um workflow de "mudancas pequenas, alta frequencia" otimizado para pacote UI (`packages/ui`) e web app (`apps/web`). O objetivo e manter `main` em estado releasavel enquanto permite iteracao rapida em componentes e utilitarios.
+Este repositorio segue um workflow de "mudancas pequenas, alta frequencia" otimizado para pacote UI (`packages/ui`). O objetivo e manter `main` em estado releasavel enquanto permite iteracao rapida em componentes e utilitarios.
 
 Processo dia a dia:
 
@@ -23,7 +23,7 @@ Processo dia a dia:
    - Manter mudancas focadas: componentes UI (ex.: `Button`) devem permanecer desacoplados e reutilizaveis entre consumidores.
 
 3. **Desenvolver localmente com feedback rapido**
-   - Rodar a web app para checks de integracao.
+   - Rodar Storybook para validação visual de componentes.
    - Rodar testes unitarios para os pacotes tocados (especialmente comportamento de componentes e utilitarios como `cn`).
 
 4. **Adicionar/ajustar testes e stories**
@@ -71,12 +71,12 @@ Processo dia a dia:
   npm install
   ```
 
-- **Rodar web app local (check de integracao):**
+- **Rodar Storybook para validação visual:**
   ```bash
-  npm run dev
+  npm run storybook
   ```
 
-- **Build para distribuicao (library/app):**
+- **Build para distribuicao (library):**
   ```bash
   npm run build
   ```
@@ -87,13 +87,12 @@ Processo dia a dia:
   ```
   Se tooling suportar, preferir testes scoped ao pacote mudado (ex.: testes do pacote UI) para feedback rapido.
 
-- **Storybook (se configurado no repo):**
+- **Type checking:**
   ```bash
-  npm run storybook
+  npm run typecheck
   ```
-  Usar Storybook para validar estados e variantes de componentes em mudancas sob `packages/ui/src/components/**`.
 
-> Nota: Nomes exatos de scripts podem variar por workspace. Se comandos falharem, checar scripts em `package.json` na root e pacotes workspace (comumente `apps/web` e `packages/ui`).
+> Nota: Nomes exatos de scripts podem variar por workspace. Se comandos falharem, checar scripts em `package.json` na root e pacotes workspace (comumente `packages/ui`).
 
 ## Expectativas de Code Review
 
@@ -137,7 +136,7 @@ Para novos contribuidores, o caminho mais rapido para produtivo e:
   - Melhorar cobertura de utilitarios (ex.: edge cases para `cn`).
   - Alinhar padroes de componentes across `packages/ui/src/components/**` (nomes de props consistentes e convencoes de estilo).
 
-Se team rastreia trabalho em issue tracker, procurar labels como **good first issue**, **starter**, ou **help wanted**, e preferir itens que toquem apenas um pacote (`apps/web` ou `packages/ui`) ate familiarizar com estrutura de workspace.
+Se team rastreia trabalho em issue tracker, procurar labels como **good first issue**, **starter**, ou **help wanted**, e preferir itens que toquem apenas o pacote `packages/ui` ate familiarizar com estrutura de workspace.
 
 ## Recursos Relacionados
 
