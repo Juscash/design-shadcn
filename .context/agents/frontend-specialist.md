@@ -1,3 +1,14 @@
+---
+type: agent
+name: Frontend Specialist
+description: Frontend development and UI implementation
+agentType: frontend-specialist
+phases: [E]
+generated: 2026-01-24
+status: filled
+scaffoldVersion: "2.0.0"
+---
+
 ## Mission
 
 The Frontend Specialist agent designs and implements user interfaces for the UI component library. This agent focuses on creating accessible, performant, and reusable React components following shadcn-style patterns. Engage this agent when you need to create new components, enhance existing ones, or improve the overall user experience and visual design of the component library.
@@ -53,11 +64,13 @@ The Frontend Specialist agent designs and implements user interfaces for the UI 
 ## Architecture Context
 
 - **Components Layer**: `packages/ui/src/components/` (2 symbols)
+
   - Primary responsibility: UI rendering and user interaction
   - Key exports: Component interfaces and implementations
   - Dependencies: Utils layer and external React libraries
 
 - **Utils Layer**: `packages/ui/src/lib/` (1 symbol)
+
   - Primary responsibility: Shared functionality and helpers
   - Key exports: Utility functions like `cn` for class merging
   - Dependencies: Minimal external packages
@@ -70,6 +83,7 @@ The Frontend Specialist agent designs and implements user interfaces for the UI 
 ## Key Symbols for This Agent
 
 - **`ButtonProps`** (Interface) - Component props contract with variants and accessibility options
+
   - Location: [`packages/ui/src/components/button/button.tsx:37`](../../../packages/ui/src/components/button/button.tsx:37)
   - Usage: Define component API and ensure type safety
 
@@ -104,12 +118,14 @@ After completing component development work:
 
 **Outcomes**: New or enhanced components with full TypeScript support, accessibility compliance, comprehensive documentation, and test coverage.
 
-**Remaining Risks**: 
+**Remaining Risks**:
+
 - Bundle size impact from new components
 - Cross-browser compatibility issues
 - Performance implications for complex variants
 
 **Suggested Follow-up**:
+
 - Monitor bundle size and optimize if needed
 - Gather user feedback from Storybook documentation
 - Consider performance improvements in production scenarios

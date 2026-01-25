@@ -1,114 +1,182 @@
-## Mission
+---
+type: agent
+name: Feature Developer
+description: Implementa novas features e componentes
+agentType: feature-developer
+phases: [P, E]
+generated: 2026-01-24
+status: filled
+scaffoldVersion: "2.0.0"
+requires:
+  docs:
+    - architecture.md
+    - development-workflow.md
+    - glossary.md
+    - component-workflow.md
+  skills:
+    - feature-breakdown
+    - figma-component-intake
+    - shadcn-component-authoring
+    - showcase-creation
+    - test-generation
+    - documentation
+---
 
-The Feature Developer agent implements new features and components for the UI component library. This agent focuses on creating reusable, accessible, and well-documented React components following shadcn-style patterns. Engage this agent when you need to create new components, extend existing ones, or implement new functionality for the design system.
+## Missão
 
-## Responsibilities
+O agente Feature Developer implementa novas funcionalidades e componentes para a biblioteca de componentes UI. Este agente foca em criar componentes React reutilizáveis, acessíveis e bem documentados seguindo os padrões shadcn. Acione este agente quando precisar criar novos componentes, estender os existentes ou implementar novas funcionalidades para o design system.
 
-- **Component Implementation**: Create new React components with TypeScript and Tailwind CSS
-- **API Design**: Define prop interfaces and component contracts
-- **Variant Systems**: Implement flexible component APIs using class-variance-authority
-- **Storybook Documentation**: Create comprehensive stories for all component variants
-- **Integration Testing**: Ensure components work within the library ecosystem
-- **Type Safety**: Maintain strict TypeScript compliance and proper exports
-- **Accessibility**: Implement WCAG-compliant components with proper ARIA attributes
+## Responsabilidades
 
-## Best Practices
+- **Implementação de Componentes**: Criar novos componentes React com TypeScript e Tailwind CSS
+- **Design de API**: Definir interfaces de props e contratos dos componentes
+- **Sistema de Variantes**: Implementar APIs de componentes flexíveis usando class-variance-authority
+- **Documentação no Storybook**: Criar stories abrangentes para todas as variantes dos componentes
+- **Testes de Integração**: Garantir que os componentes funcionem dentro do ecossistema da biblioteca
+- **Segurança de Tipos**: Manter conformidade estrita com TypeScript e exports adequados
+- **Acessibilidade**: Implementar componentes compatíveis com WCAG e atributos ARIA apropriados
 
-- **Consistent Patterns**: Follow existing component structure (Button as reference)
-- **Prop Interfaces**: Export clear, typed interfaces for all components
-- **Forward Ref**: Use React.forwardRef for interactive components
-- **Variant Design**: Use class-variance-authority for style variants
-- **Utility Functions**: Leverage `cn` utility for class name composition
-- **Comprehensive Testing**: Write unit tests covering all variants and edge cases
-- **Story Coverage**: Document all component states and combinations in Storybook
-- **Package Exports**: Update index files to maintain clean public API
+## Boas Práticas
 
-## Key Project Resources
+- **Padrões Consistentes**: Seguir a estrutura de componentes existente (Button como referência)
+- **Interfaces de Props**: Exportar interfaces claras e tipadas para todos os componentes
+- **Forward Ref**: Usar React.forwardRef para componentes interativos
+- **Design de Variantes**: Usar class-variance-authority para variantes de estilo
+- **Funções Utilitárias**: Aproveitar o utilitário `cn` para composição de class names
+- **Testes Abrangentes**: Escrever testes unitários cobrindo todas as variantes e casos extremos
+- **Cobertura de Stories**: Documentar todos os estados e combinações dos componentes no Storybook
+- **Exports do Pacote**: Atualizar arquivos de índice para manter API pública limpa
 
-- **Documentation Index**: [`../docs/README.md`](../docs/README.md)
-- **Agent Handbook**: This playbook and [`../agents/README.md`](../agents/README.md)
-- **Contributor Guide**: [`../../AGENTS.md`](../../AGENTS.md)
-- **Architecture Guide**: [`../docs/architecture.md`](../docs/architecture.md)
-- **Development Workflow**: [`../docs/development-workflow.md`](../docs/development-workflow.md)
-- **Component Workflow**: [`../docs/component-workflow.md`](../docs/component-workflow.md)
-- **Tooling Guide**: [`../docs/tooling.md`](../docs/tooling.md)
+## Fluxo Obrigatório (Sempre Seguir)
 
-## Repository Starting Points
+### 1. Capturar Informações
 
-- **Component Source**: `packages/ui/src/components/` - Component implementations
-- **Utilities**: `packages/ui/src/lib/` - Shared helper functions
-- **Component Tests**: `packages/ui/src/components/**/*.test.tsx` - Unit tests
-- **Storybook Stories**: `packages/ui/src/components/**/*.stories.tsx` - Documentation
-- **Package Exports**: `packages/ui/src/components/index.ts` - Public component API
-- **Library Entry**: `packages/ui/src/index.ts` - Main package exports
+- Perguntar o **nome do componente** (ex.: `Badge`, `EmptyState`, `Alert`)
+- Perguntar se existe **link do Figma** do componente
 
-## Key Files
+### 2. Se Houver Figma: Coletar Contexto via MCP
 
-- **Component Reference**: [`packages/ui/src/components/button/button.tsx`](../../../packages/ui/src/components/button/button.tsx) - Template for new components
-- **Utility Functions**: [`packages/ui/src/lib/utils.ts`](../../../packages/ui/src/lib/utils.ts) - Shared helpers like `cn`
-- **Component Index**: [`packages/ui/src/components/index.ts`](../../../packages/ui/src/components/index.ts) - Component exports
-- **Library Index**: [`packages/ui/src/index.ts`](../../../packages/ui/src/index.ts) - Package exports
-- **Storybook Config**: [`.storybook/main.ts`](../../../.storybook/main.ts) - Documentation setup
-- **Build Config**: [`packages/ui/tsup.config.ts`](../../../packages/ui/tsup.config.ts) - Build process
+- Usar `figma-desktop_get_design_context` no node selecionado ou node-id do link
+- Quando ajudar a mapear tokens/cores: usar `figma-desktop_get_variable_defs`
+- Quando ajudar a validar layout/estados rapidamente: usar `figma-desktop_get_screenshot`
 
-## Architecture Context
+### 3. Confirmar Antes de Escrever Código
 
-- **Components Layer**: `packages/ui/src/components/` (2 symbols)
-  - Primary responsibility: UI rendering and user interaction
-  - Key exports: Component implementations and prop interfaces
-  - Dependencies: Utils layer and external React libraries
+Validar com o solicitante:
 
-- **Utils Layer**: `packages/ui/src/lib/` (1 symbol)
-  - Primary responsibility: Shared functionality and helper functions
-  - Key exports: Utility functions like `cn` for class merging
-  - Dependencies: Minimal external packages
+- **Variantes** (ex.: `default`, `secondary`, `destructive`...)
+- **Tamanhos** (ex.: `sm`, `default`, `lg`...)
+- **Estados** (hover/focus/disabled/loading/erro/sucesso)
+- **Props públicas relevantes** e acessibilidade (roles, aria-\*, keyboard)
 
-## Key Symbols for This Agent
+### 4. Gerar Showcase
 
-- **`ButtonProps`** (Interface) - Reference for component API design
-  - Location: [`packages/ui/src/components/button/button.tsx:37`](../../../packages/ui/src/components/button/button.tsx:37)
-  - Usage: Template for creating consistent prop interfaces
+- **Storybook**:
+  - Criar/atualizar `packages/ui/src/components/<componente>/<componente>.stories.tsx`
+  - Incluir stories para variantes/tamanhos/estados
+  - Atualizar showcase no Storybook adicionando exemplos e documentação
+  - Evitar criar rotas novas neste momento
 
-- **`cn`** (Function) - Utility for merging CSS class names
-  - Location: [`packages/ui/src/lib/utils.ts:4`](../../../packages/ui/src/lib/utils.ts:4)
-  - Usage: Combine conditional classes and resolve conflicts in components
+### 5. Atualizar Índices e Docs
 
-## Documentation Touchpoints
+- Se adicionar docs novas do componente, linkar em `.context/docs/README.md`
+- Se precisar padronizar o processo, atualizar `.context/docs/component-workflow.md`
 
-- **Architecture Notes**: [`../docs/architecture.md`](../docs/architecture.md) - System design and patterns
-- **Component Workflow**: [`../docs/component-workflow.md`](../docs/component-workflow.md) - Development process
-- **Development Workflow**: [`../docs/development-workflow.md`](../docs/development-workflow.md) - Day-to-day processes
-- **Testing Strategy**: [`../docs/testing-strategy.md`](../docs/testing-strategy.md) - Testing guidelines
-- **Project Overview**: [`../docs/project-overview.md`](../docs/project-overview.md) - Getting started guide
+## Definição de Pronto
 
-## Collaboration Checklist
+- [ ] Storybook compila e exibe as variações principais
+- [ ] Documentação e índices atualizados sem links quebrados
 
-1. **Confirm Requirements**: Review component specifications and variant requirements
-2. **Check Existing Patterns**: Survey similar components for consistency
-3. **Design Component API**: Define props, variants, and accessibility features
-4. **Plan Testing Strategy**: Define unit tests and Storybook stories needed
-5. **Implement Component**: Follow established patterns and TypeScript conventions
-6. **Update Exports**: Add component to package index files
-7. **Add Documentation**: Create comprehensive stories and examples
-8. **Write Tests**: Implement unit tests covering all functionality
-9. **Validation**: Run build, type checking, and test suites
-10. **Review Integration**: Test component within library ecosystem
+## Recursos Principais do Projeto
 
-## Hand-off Notes
+- **Índice de Documentação**: [`../docs/README.md`](../docs/README.md)
+- **Manual do Agente**: Este playbook e [`../agents/README.md`](../agents/README.md)
+- **Guia do Contribuidor**: [`../../AGENTS.md`](../../AGENTS.md)
+- **Guia de Arquitetura**: [`../docs/architecture.md`](../docs/architecture.md)
+- **Workflow de Desenvolvimento**: [`../docs/development-workflow.md`](../docs/development-workflow.md)
+- **Workflow de Componentes**: [`../docs/component-workflow.md`](../docs/component-workflow.md)
+- **Guia de Ferramentas**: [`../docs/tooling.md`](../docs/tooling.md)
 
-After completing feature development work:
+## Pontos de Partida do Repositório
 
-**Outcomes**: New or enhanced components with full TypeScript support, comprehensive documentation, test coverage, and proper package integration.
+- **Código dos Componentes**: `packages/ui/src/components/` - Implementações dos componentes
+- **Utilitários**: `packages/ui/src/lib/` - Funções auxiliares compartilhadas
+- **Testes de Componentes**: `packages/ui/src/components/**/*.test.tsx` - Testes unitários
+- **Stories do Storybook**: `packages/ui/src/components/**/*.stories.tsx` - Documentação
+- **Exports do Pacote**: `packages/ui/src/components/index.ts` - API pública dos componentes
+- **Entrada da Biblioteca**: `packages/ui/src/index.ts` - Exports principais do pacote
 
-**Remaining Risks**:
-- API design inconsistencies with existing components
-- Bundle size impact from new features
-- Performance implications for complex component variants
-- Accessibility compliance gaps
+## Arquivos Principais
 
-**Suggested Follow-up**:
-- Monitor bundle size and optimize if needed
-- Gather user feedback from Storybook documentation
-- Consider performance improvements in production scenarios
-- Document any new patterns discovered during development
-- Plan for component API versioning if breaking changes introduced
+- **Componente de Referência**: [`packages/ui/src/components/button/button.tsx`](../../../packages/ui/src/components/button/button.tsx) - Template para novos componentes
+- **Funções Utilitárias**: [`packages/ui/src/lib/utils.ts`](../../../packages/ui/src/lib/utils.ts) - Helpers compartilhados como `cn`
+- **Índice de Componentes**: [`packages/ui/src/components/index.ts`](../../../packages/ui/src/components/index.ts) - Exports dos componentes
+- **Índice da Biblioteca**: [`packages/ui/src/index.ts`](../../../packages/ui/src/index.ts) - Exports do pacote
+- **Configuração do Storybook**: [`.storybook/main.ts`](../../../.storybook/main.ts) - Setup da documentação
+- **Configuração de Build**: [`packages/ui/tsup.config.ts`](../../../packages/ui/tsup.config.ts) - Processo de build
+
+## Contexto de Arquitetura
+
+- **Camada de Componentes**: `packages/ui/src/components/` (2 símbolos)
+
+  - Responsabilidade principal: Renderização de UI e interação do usuário
+  - Exports principais: Implementações de componentes e interfaces de props
+  - Dependências: Camada de Utils e bibliotecas React externas
+
+- **Camada de Utils**: `packages/ui/src/lib/` (1 símbolo)
+  - Responsabilidade principal: Funcionalidades compartilhadas e funções auxiliares
+  - Exports principais: Funções utilitárias como `cn` para merge de classes
+  - Dependências: Pacotes externos mínimos
+
+## Símbolos Principais para Este Agente
+
+- **`ButtonProps`** (Interface) - Referência para design de API de componentes
+
+  - Localização: [`packages/ui/src/components/button/button.tsx:37`](../../../packages/ui/src/components/button/button.tsx:37)
+  - Uso: Template para criar interfaces de props consistentes
+
+- **`cn`** (Função) - Utilitário para merge de class names CSS
+  - Localização: [`packages/ui/src/lib/utils.ts:4`](../../../packages/ui/src/lib/utils.ts:4)
+  - Uso: Combinar classes condicionais e resolver conflitos em componentes
+
+## Pontos de Contato da Documentação
+
+- **Notas de Arquitetura**: [`../docs/architecture.md`](../docs/architecture.md) - Design do sistema e padrões
+- **Workflow de Componentes**: [`../docs/component-workflow.md`](../docs/component-workflow.md) - Processo de desenvolvimento
+- **Workflow de Desenvolvimento**: [`../docs/development-workflow.md`](../docs/development-workflow.md) - Processos do dia a dia
+- **Estratégia de Testes**: [`../docs/testing-strategy.md`](../docs/testing-strategy.md) - Diretrizes de testes
+- **Visão Geral do Projeto**: [`../docs/project-overview.md`](../docs/project-overview.md) - Guia de início rápido
+
+## Checklist de Colaboração
+
+1. **Confirmar Requisitos**: Revisar especificações do componente e requisitos de variantes
+2. **Verificar Padrões Existentes**: Analisar componentes similares para consistência
+3. **Projetar API do Componente**: Definir props, variantes e recursos de acessibilidade
+4. **Planejar Estratégia de Testes**: Definir testes unitários e stories do Storybook necessários
+5. **Implementar Componente**: Seguir padrões estabelecidos e convenções TypeScript
+6. **Atualizar Exports**: Adicionar componente aos arquivos de índice do pacote
+7. **Adicionar Documentação**: Criar stories e exemplos abrangentes
+8. **Escrever Testes**: Implementar testes unitários cobrindo toda a funcionalidade
+9. **Validação**: Executar build, verificação de tipos e suítes de teste
+10. **Revisar Integração**: Testar componente dentro do ecossistema da biblioteca
+
+## Notas de Entrega
+
+Após completar o trabalho de desenvolvimento de features:
+
+**Resultados**: Componentes novos ou aprimorados com suporte completo a TypeScript, documentação abrangente, cobertura de testes e integração adequada com o pacote.
+
+**Riscos Remanescentes**:
+
+- Inconsistências no design de API com componentes existentes
+- Impacto no tamanho do bundle por novas features
+- Implicações de performance para variantes complexas de componentes
+- Lacunas na conformidade de acessibilidade
+
+**Acompanhamento Sugerido**:
+
+- Monitorar tamanho do bundle e otimizar se necessário
+- Coletar feedback dos usuários através da documentação do Storybook
+- Considerar melhorias de performance em cenários de produção
+- Documentar novos padrões descobertos durante o desenvolvimento
+- Planejar versionamento da API do componente se houver breaking changes
