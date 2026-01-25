@@ -1,4 +1,14 @@
 {
-  "active": [],
-  "completed": []
+  "active": [
+    {
+      "slug": "novo-componente-segmented",
+      "path": "plans/novo-componente-segmented.md",
+      "title": "Criar componente Segmented",
+      "summary": "Criar o componente Segmented baseado em `toggle-group` do shadcn, alinhado ao Figma, com selecao unica.",
+      "linkedAt": "2026-01-25T21:29:10.060Z",
+      "status": "active"
+    }
+  ],
+  "completed": [],
+  "primary": "novo-componente-segmented"
 }
