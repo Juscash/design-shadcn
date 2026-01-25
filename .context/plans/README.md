@@ -4,9 +4,8 @@ This directory contains plans for coordinating work across documentation and pla
 
 ## Plan Queue
 1. [Adjust Button To Figma](./adjust-button-to-figma.md)
-2. [Self Contained Ui Library](./self-contained-ui-library.md)
+2. [Checkbox Component Development](./checkbox-component-development.md)
 3. [Update Tailwind Config](./update-tailwind-config.md)
-4. [Update Webapp Button Usage](./update-webapp-button-usage.md)
 
 ## How To Create Or Update Plans
 - Run "ai-context plan <name>" to scaffold a new plan template.

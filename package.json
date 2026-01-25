@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "npm run build --workspaces && build:storybook" ,
+    "build": "npm run build --workspaces && build:storybook",
     "build:ui": "npm run build --workspace=packages/ui",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",

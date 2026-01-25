@@ -53,14 +53,70 @@ O agente Feature Developer implementa novas funcionalidades e componentes para a
 
 - Perguntar o **nome do componente** (ex.: `Badge`, `EmptyState`, `Alert`)
 - Perguntar se existe **link do Figma** do componente
+- Perguntar se é **baseado em componente shadcn** (se sim, usar MCP para consultar detalhes)
 
-### 2. Se Houver Figma: Coletar Contexto via MCP
+---
+
+### 2. Fluxo para Componentes shadcn (Base + Customização)
+
+Quando o componente é baseado em um componente shadcn existente:
+
+#### 2.1 Consultar Documentação via MCP shadcn
+
+Usar o **MCP shadcn** integrado para buscar informações do componente:
+
+```
+# Ferramentas disponíveis do MCP shadcn:
+- mcp_shadcn_list_components: Lista todos os componentes disponíveis no registry
+- mcp_shadcn_search_components: Busca componentes por nome ou funcionalidade
+- mcp_shadcn_get_component_info: Obtém detalhes de um componente específico
+```
+
+**Exemplos de uso:**
+
+- "Show me all available components in the shadcn registry"
+- "Get details for the button component"
+- "Search for form components"
+
+> **Nota:** O MCP shadcn está configurado em `opencode.json` e permite consultar o registry sem precisar de URL externa.
+
+#### 2.2 Instalar Componente Base via CLI
+
+Executar o comando shadcn para adicionar o componente:
+
+```bash
+# Comando com path customizado para instalar na pasta correta:
+npx shadcn@latest add <componente> --cwd packages/ui -p src/components/<componente> -y
+```
+
+**Opções importantes do CLI:**
+| Opção | Descrição |
+|-------|-----------|
+| `--cwd packages/ui` | Define o diretório de trabalho (onde está o `components.json`) |
+| `-p src/components/<componente>` | Define o caminho exato do componente |
+| `-y` | Pula confirmação (uso automatizado) |
+| `-o` | Sobrescreve arquivos existentes |
+
+#### 2.3 Customizar de Acordo com o Design Figma
+
+Após instalação do componente base:
+
+1. Usar `figma-desktop_get_design_context` para extrair especificações visuais
+2. Usar `figma-desktop_get_variable_defs` para mapear tokens/cores
+3. Modificar o componente instalado para:
+   - Ajustar variantes conforme design
+   - Aplicar tokens de cor do design system
+   - Adicionar/remover props conforme necessidade
+
+---
+
+### 3. Se Houver Figma (Sem Base shadcn): Coletar Contexto via MCP
 
 - Usar `figma-desktop_get_design_context` no node selecionado ou node-id do link
 - Quando ajudar a mapear tokens/cores: usar `figma-desktop_get_variable_defs`
 - Quando ajudar a validar layout/estados rapidamente: usar `figma-desktop_get_screenshot`
 
-### 3. Confirmar Antes de Escrever Código
+### 4. Confirmar Antes de Escrever Código
 
 Validar com o solicitante:
 
@@ -69,7 +125,7 @@ Validar com o solicitante:
 - **Estados** (hover/focus/disabled/loading/erro/sucesso)
 - **Props públicas relevantes** e acessibilidade (roles, aria-\*, keyboard)
 
-### 4. Gerar Showcase
+### 5. Gerar Showcase
 
 - **Storybook**:
   - Criar/atualizar `packages/ui/src/components/<componente>/<componente>.stories.tsx`
@@ -77,7 +133,7 @@ Validar com o solicitante:
   - Atualizar showcase no Storybook adicionando exemplos e documentação
   - Evitar criar rotas novas neste momento
 
-### 5. Atualizar Índices e Docs
+### 6. Atualizar Índices e Docs
 
 - Se adicionar docs novas do componente, linkar em `.context/docs/README.md`
 - Se precisar padronizar o processo, atualizar `.context/docs/component-workflow.md`
