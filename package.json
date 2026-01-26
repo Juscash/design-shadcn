@@ -8,8 +8,9 @@
     "apps/*"
   ],
   "scripts": {
+    "predev": "npm run build:css --workspace=@juscash/ui",
     "dev": "storybook dev -p 6006",
-    "build": "npm run build --workspaces && build:storybook",
+    "build": "npm run build --workspaces && npm run build:storybook",
     "build:ui": "npm run build --workspace=packages/ui",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",

@@ -5,6 +5,21 @@ const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
+      },
+      fontSize: {
+        "heading-1": ["61px", { lineHeight: "1.2", letterSpacing: "0" }],
+        "heading-2": ["49px", { lineHeight: "1.2", letterSpacing: "0" }],
+        "heading-3": ["39px", { lineHeight: "1.2", letterSpacing: "0" }],
+        "heading-4": ["31px", { lineHeight: "1.2", letterSpacing: "0" }],
+        "heading-5": ["25px", { lineHeight: "1.2", letterSpacing: "0" }],
+        "heading-6": ["20px", { lineHeight: "1.2", letterSpacing: "0" }],
+        "body-1": ["16px", { lineHeight: "1.2", letterSpacing: "0" }],
+        "body-2": ["13px", { lineHeight: "1.2", letterSpacing: "0" }],
+        "caption-1": ["10px", { lineHeight: "1.2", letterSpacing: "0" }],
+      },
       colors: {
         border: "hsl(var(--border))",
         background: "hsl(var(--background))",
