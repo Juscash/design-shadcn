@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   darkMode: ["class"],
@@ -21,6 +21,20 @@ const config: Config = {
         "caption-1": ["10px", { lineHeight: "1.2", letterSpacing: "0" }],
       },
       colors: {
+        neutral: {
+          0: "var(--neutral-0)",
+          50: "var(--neutral-50)",
+          70: "var(--neutral-70)",
+          100: "var(--neutral-100)",
+          200: "var(--neutral-200)",
+          300: "var(--neutral-300)",
+          400: "var(--neutral-400)",
+          500: "var(--neutral-500)",
+          600: "var(--neutral-600)",
+          700: "var(--neutral-700)",
+          800: "var(--neutral-800)",
+          900: "var(--neutral-900)",
+        },
         border: "hsl(var(--border))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -33,20 +47,20 @@ const config: Config = {
         radius: {
           sm: "var(--radius-sm)",
           md: "var(--radius-md)",
-          lg: "var(--radius-lg)"
-        }
+          lg: "var(--radius-lg)",
+        },
       },
       spacing: {
-        '3': '0.75rem',
-        '2': '0.5rem',
-        '1': '0.25rem',
+        "3": "0.75rem",
+        "2": "0.5rem",
+        "1": "0.25rem",
       },
       borderRadius: {
-        '4px': '4px',
-      }
-    }
+        "4px": "4px",
+      },
+    },
   },
-  plugins: []
-}
+  plugins: [],
+};
 
-export default config
+export default config;

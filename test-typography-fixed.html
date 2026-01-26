@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teste Typography - Final</title>
+    <style>
+      :root {
+        --neutral-0: #ffffff;
+        --neutral-50: #fafafa;
+        --neutral-70: #677176;
+        --neutral-100: #f5f5f5;
+        --neutral-200: #e5e5e5;
+        --neutral-300: #d4d4d4;
+        --neutral-400: #a3a3a3;
+        --neutral-500: #6d6d6e;
+        --neutral-600: #525252;
+        --neutral-700: #404040;
+        --neutral-800: #262626;
+        --neutral-900: #171717;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        padding: 2rem;
+      }
+
+      .text-heading-1 {
+        font-size: 61px;
+        line-height: 1.2;
+      }
+
+      .text-heading-2 {
+        font-size: 49px;
+        line-height: 1.2;
+      }
+
+      .text-heading-3 {
+        font-size: 39px;
+        line-height: 1.2;
+      }
+
+      .text-body-1 {
+        font-size: 16px;
+        line-height: 1.2;
+      }
+
+      .text-neutral-800 {
+        color: var(--neutral-800);
+      }
+
+      .text-neutral-500 {
+        color: var(--neutral-500);
+      }
+
+      .text-neutral-400 {
+        color: var(--neutral-400);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Teste do Componente Typography</h1>
+
+    <h2>Teste 1: Heading 1 com cor padrão</h2>
+    <p class="text-heading-1 text-neutral-800">
+      Heading 1 - 61px - texto em neutral-800 (#262626)
+    </p>
+
+    <h2>Teste 2: Heading 2 com tom soft</h2>
+    <p class="text-heading-2 text-neutral-500">
+      Heading 2 - 49px - texto em neutral-500 (#6d6d6e)
+    </p>
+
+    <h2>Teste 3: Heading 3 com tom disabled</h2>
+    <p class="text-heading-3 text-neutral-400">
+      Heading 3 - 39px - texto em neutral-400 (#a3a3a3)
+    </p>
+
+    <h2>Teste 4: Body 1 com cor padrão</h2>
+    <p class="text-body-1 text-neutral-800">
+      Body 1 - 16px - texto em neutral-800 (#262626)
+    </p>
+
+    <hr style="margin: 2rem 0" />
+
+    <h2>Resultado Esperado:</h2>
+    <ul>
+      <li>✅ Heading 1 deve estar em 61px</li>
+      <li>✅ Heading 2 deve estar em 49px</li>
+      <li>✅ Heading 3 deve estar em 39px</li>
+      <li>✅ Body 1 deve estar em 16px</li>
+      <li>
+        ✅ As cores devem variar conforme os tons (neutral-800, neutral-500,
+        neutral-400)
+      </li>
+    </ul>
+  </body>
+</html>

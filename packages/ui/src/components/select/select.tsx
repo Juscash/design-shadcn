@@ -12,7 +12,7 @@ const SelectGroup = SelectPrimitive.Group;
 const SelectValue = SelectPrimitive.Value;
 
 const selectTriggerVariants = cva(
-  "flex w-full items-center justify-between gap-2 border bg-[var(--neutral-50)] pl-3 pr-2 py-2 text-[13px] leading-[1.2] transition-colors focus-visible:outline-none data-[placeholder]:text-[var(--neutral-500)] [&>span]:line-clamp-1",
+  "flex w-full items-center justify-between gap-2 border bg-[var(--neutral-50)] pl-3 pr-2 py-2 text-[13px] leading-[1.2] transition-colors focus-visible:outline-none [&>span]:line-clamp-1",
   {
     variants: {
       size: {
@@ -21,14 +21,32 @@ const selectTriggerVariants = cva(
         s: "min-h-[32px] rounded-[8px]",
         xs: "min-h-[24px] rounded-[4px] text-[10px]",
       },
+      state: {
+        placeholder:
+          "border-[var(--neutral-300)] text-[var(--neutral-500)] data-[placeholder]:text-[var(--neutral-500)] focus-visible:ring-[3px] focus-visible:ring-[var(--neutral-300)] focus-visible:ring-offset-0",
+        value:
+          "border-[var(--neutral-300)] text-[var(--neutral-800)] data-[placeholder]:text-[var(--neutral-500)] focus-visible:ring-[3px] focus-visible:ring-[var(--neutral-300)] focus-visible:ring-offset-0",
+        focus:
+          "border-[var(--neutral-300)] text-[var(--neutral-800)] data-[placeholder]:text-[var(--neutral-500)] ring-[3px] ring-[var(--neutral-300)] ring-offset-0",
+        error:
+          "border-[var(--feedback-red-500)] text-[var(--neutral-800)] data-[placeholder]:text-[var(--neutral-500)] focus-visible:ring-[3px] focus-visible:ring-[rgba(210,25,11,0.4)] focus-visible:ring-offset-0",
+        disabled:
+          "border-[var(--neutral-200)] text-[var(--neutral-400)] data-[placeholder]:text-[var(--neutral-400)] cursor-not-allowed",
+      },
     },
     defaultVariants: {
       size: "m",
+      state: "value",
     },
   },
 );
 
-export type SelectState = "placeholder" | "value" | "focus" | "error" | "disabled";
+export type SelectState =
+  | "placeholder"
+  | "value"
+  | "focus"
+  | "error"
+  | "disabled";
 
 export interface SelectTriggerProps
   extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>,
@@ -40,55 +58,27 @@ const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   SelectTriggerProps
 >(({ className, children, size, state, disabled, ...props }, ref) => {
-  const hasError = state === "error";
   const isDisabled = disabled || state === "disabled";
-  const isFocused = state === "focus";
-
-  const focusClass = hasError
-    ? "focus-visible:ring-[3px] focus-visible:ring-[rgba(210,25,11,0.4)] focus-visible:ring-offset-0"
-    : "focus-visible:ring-[3px] focus-visible:ring-[var(--neutral-300)] focus-visible:ring-offset-0";
-
-  const forcedFocusClass = isFocused
-    ? hasError
-      ? "ring-[3px] ring-[rgba(210,25,11,0.4)] ring-offset-0"
-      : "ring-[3px] ring-[var(--neutral-300)] ring-offset-0"
-    : "";
-
-  const borderClass = hasError
-    ? "border-[var(--feedback-red-500)]"
-    : isDisabled
-      ? "border-[var(--neutral-200)]"
-      : "border-[var(--neutral-300)]";
-
-  const textClass = isDisabled
-    ? "text-[var(--neutral-400)]"
-    : state === "placeholder"
-      ? "text-[var(--neutral-500)]"
-      : "text-[var(--neutral-800)]";
-
-  const iconClass = isDisabled
-    ? "text-[var(--neutral-400)]"
-    : "text-[var(--neutral-500)]";
+  const hasError = state === "error";
 
   return (
     <SelectPrimitive.Trigger
       ref={ref}
-      className={cn(
-        selectTriggerVariants({ size }),
-        borderClass,
-        focusClass,
-        forcedFocusClass,
-        textClass,
-        isDisabled && "cursor-not-allowed",
-        className,
-      )}
+      className={cn(selectTriggerVariants({ size, state, className }))}
       disabled={isDisabled}
       aria-invalid={hasError || undefined}
       {...props}
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <ChevronDown className={cn("h-4 w-4", iconClass)} />
+        <ChevronDown
+          className={cn(
+            "h-4 w-4",
+            isDisabled
+              ? "text-[var(--neutral-400)]"
+              : "text-[var(--neutral-500)]",
+          )}
+        />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
